@@ -13,6 +13,7 @@
     "quotes": "off",
     "indent": "off",
     "comma-dangle": "off",
-    "object-curly-spacing": "off"
+    "object-curly-spacing": "off",
+    "max-len": "off"
   }
 }
