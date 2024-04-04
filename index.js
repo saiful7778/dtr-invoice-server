@@ -24,7 +24,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://dtr-invoice.vercel.app"],
     methods: ["GET", "POST", "DELETE", "PATCH"],
   })
 );
