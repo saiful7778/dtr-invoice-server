@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { product } from "./src/routes/product.js";
 import mongoose from "mongoose";
+import { product } from "./src/routes/product.js";
+import { invoice } from "./src/routes/invoice.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/product", product);
+app.use("/invoice", invoice);
 
 app.listen(port, () => {
   console.log("server is running on port:", port);
