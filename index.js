@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { product } from "./src/routes/product.js";
+import products, { product } from "./src/routes/product.js";
 import { invoice } from "./src/routes/invoice.js";
 
 dotenv.config();
@@ -24,7 +24,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://dtr-invoice.vercel.app"],
+    origin: ["https://dtr-invoice.vercel.app", "http://localhost:3000"],
     methods: ["GET", "POST", "DELETE", "PATCH"],
   })
 );
@@ -35,6 +35,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/product", product);
+app.use("/products", products);
 app.use("/invoice", invoice);
 
 app.listen(port, () => {

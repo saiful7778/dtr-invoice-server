@@ -1,9 +1,19 @@
-import express from "express";
+import { Router } from "express";
 import serverHelper from "../utils/server-helper.js";
 import { productModel } from "../models/product.js";
 
-// eslint-disable-next-line new-cap
-const route = express.Router();
+const route = Router();
+const routeAll = Router();
+
+routeAll.get("/", (req, res) => {
+  serverHelper(async () => {
+    const data = await productModel.find({}, { __v: 0 });
+    res.status(200).send({
+      success: true,
+      data,
+    });
+  }, res);
+});
 
 route.post("/", (req, res) => {
   const productData = req.body;
@@ -16,4 +26,5 @@ route.post("/", (req, res) => {
   }, res);
 });
 
+export default routeAll;
 export { route as product };
