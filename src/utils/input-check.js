@@ -1,5 +1,5 @@
 export default function inputCheck(inputs, res) {
-  let inputDataType = [];
+  const inputDataType = [];
   for (let i = 0; i < inputs.length; i++) {
     if (typeof inputs[i] === "undefined") {
       inputDataType.push(undefined);

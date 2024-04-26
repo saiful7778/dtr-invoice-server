@@ -39,5 +39,41 @@ route.post("/", (req, res) => {
   }, res);
 });
 
+route.get("/:productId", (req, res) => {
+  const productId = req.params.productId;
+  serverHelper(async () => {
+    const data = await productModel.findOne({ _id: productId }, { __v: 0 });
+    res.status(201).send({
+      success: true,
+      data,
+    });
+  }, res);
+});
+
+route.patch("/:productId", (req, res) => {
+  const productId = req.params.productId;
+  const productData = req.body;
+  serverHelper(async () => {
+    const data = await productModel.updateOne({ _id: productId }, productData, {
+      upsert: true,
+    });
+    res.status(201).send({
+      success: true,
+      data,
+    });
+  }, res);
+});
+
+route.delete("/:productId", (req, res) => {
+  const productId = req.params.productId;
+  serverHelper(async () => {
+    const data = await productModel.deleteOne({ _id: productId });
+    res.status(201).send({
+      success: true,
+      data,
+    });
+  }, res);
+});
+
 export default routeAll;
 export { route as product };
