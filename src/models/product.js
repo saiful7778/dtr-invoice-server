@@ -2,6 +2,16 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
+    image: {
+      url: {
+        type: String,
+        required: true,
+      },
+      alt: {
+        type: String,
+        required: true,
+      },
+    },
     productName: { type: String, required: [true, "Product Name is required"] },
     quantity: { type: Number, required: [true, "Quantity is required"] },
     cost: { type: Number, required: [true, "Cost price is required"] },
