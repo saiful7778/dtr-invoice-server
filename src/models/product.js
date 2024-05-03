@@ -1,16 +1,21 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const productSchema = new mongoose.Schema(
+const productSchema = new Schema(
   {
     image: {
       url: {
         type: String,
-        required: true,
+        required: [true, "Image url is required"],
       },
       alt: {
         type: String,
-        required: true,
+        required: [true, "Image alt text is required"],
       },
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: [true, "Author is required"],
     },
     productName: { type: String, required: [true, "Product Name is required"] },
     quantity: { type: Number, required: [true, "Quantity is required"] },
@@ -20,4 +25,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const productModel = mongoose.model("product", productSchema);
+export const productModel = model("product", productSchema);

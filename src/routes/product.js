@@ -18,9 +18,12 @@ routeAll.get("/", (req, res) => {
 
 route.post("/", (req, res) => {
   const productData = req.body;
-  const { image, productName, quantity, cost, sell } = productData;
+  const { image, author, productName, quantity, cost, sell } = productData;
 
-  const check = inputCheck([image, productName, quantity, cost, sell], res);
+  const check = inputCheck(
+    [image, author, productName, quantity, cost, sell],
+    res
+  );
   if (!check) {
     return;
   }
@@ -31,7 +34,14 @@ route.post("/", (req, res) => {
   }
 
   serverHelper(async () => {
-    const data = await productModel.create(productData);
+    const data = await productModel.create({
+      author,
+      image: { url, alt },
+      productName,
+      quantity,
+      cost,
+      sell,
+    });
     res.status(201).send({
       success: true,
       data,
