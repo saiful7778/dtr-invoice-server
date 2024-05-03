@@ -1,9 +1,8 @@
-import express from "express";
+import { Router } from "express";
 import serverHelper from "../utils/server-helper.js";
 import { invoiceModel } from "../models/invoice.js";
 
-// eslint-disable-next-line new-cap
-const route = express.Router();
+const route = Router();
 
 route.post("/", (req, res) => {
   const invoiceData = req.body;
